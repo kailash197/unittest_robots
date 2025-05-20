@@ -54,12 +54,23 @@ class RobotControl():
 
         return [self.angular_speed_d, self.angle_d]
 
+    # def convert_degree_to_rad(self, speed_deg, angle_deg):
+
+    #     self.angular_speed_r = speed_deg * 3.14 / 180
+    #     self.angle_r = angle_deg * 3.14 / 180
+    #     return [self.angular_speed_r, self.angle_r]
     def convert_degree_to_rad(self, speed_deg, angle_deg):
 
         self.angular_speed_r = speed_deg * 3.14 / 180
         self.angle_r = angle_deg * 3.14 / 180
-        return [self.angular_speed_r, self.angle_r]
 
+        if self.angle_r < 0:
+            self.angle_r = self.angle_r * (-1)
+            
+        if self.angular_speed_r < 0:
+            self.angular_speed_r = self.angular_speed_r * (-1)
+
+        return [self.angular_speed_r, self.angle_r]
     def rotate(self):
 
         # Initilize velocities
