@@ -9,6 +9,8 @@ project(robot_control)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -58,6 +60,11 @@ catkin_python_setup()
 #   Service2.srv
 # )
 
+add_service_files(
+  FILES
+  RotateRobot.srv
+)
+
 ## Generate actions in the 'action' folder
 # add_action_files(
 #   FILES
@@ -70,6 +77,11 @@ catkin_python_setup()
 #   DEPENDENCIES
 #   std_msgs  # Or other packages containing msgs
 # )
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -103,7 +115,7 @@ catkin_python_setup()
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robot_control
-#  CATKIN_DEPENDS rospy
+ CATKIN_DEPENDS rospy
 #  DEPENDS system_lib
 )
 
